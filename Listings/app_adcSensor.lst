@@ -1,0 +1,80 @@
+C51 COMPILER V9.54   APP_ADCSENSOR                                                         03/12/2022 23:34:30 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE APP_ADCSENSOR
+OBJECT MODULE PLACED IN .\Objects\app_adcSensor.obj
+COMPILER INVOKED BY: E:\SoftWares\Keil5\C51\BIN\C51.EXE app_adcSensor.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRIN
+                    -T(.\Listings\app_adcSensor.lst) TABS(2) OBJECT(.\Objects\app_adcSensor.obj)
+
+line level    source
+
+   1          #include "include.h"
+*** WARNING C322 IN LINE 538 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 540 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 542 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 544 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 546 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 548 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 550 OF STC15Fxxxx.H: unknown identifier
+   2          
+   3          void adcInit(void)
+   4          {
+   5   1        u8 ch2 = 2;
+   6   1        /* use ADC Channel 2 */
+   7   1        P1ASF = 0x06;
+   8   1        ADC_RES = 0;
+   9   1        ADC_RESL = 0;
+  10   1        ADC_CONTR = ADC_POWER | ADC_SPEEDLL | ADC_START | ch2;
+  11   1        Delay(20);
+  12   1      }
+  13          
+  14          static unsigned int sensorRead(void)
+  15          {
+  16   1        float tmp;
+  17   1        unsigned int result;
+  18   1        u8 ch2 = 2;
+  19   1        Delay(3);
+  20   1        ADC_CONTR &= !ADC_FLAG;
+  21   1        ADC_CONTR = ADC_POWER | ADC_SPEEDLL | ADC_START |ch2;
+  22   1        Delay(3);
+  23   1        ADC_CONTR &= ~ADC_FLAG;
+  24   1        result = ADC_RES;
+  25   1        result=result << 2;                         
+  26   1        tmp = result;                               
+  27   1        tmp = tmp / 1024 * 5 * 20;
+  28   1        return (unsigned int)tmp;
+  29   1      }
+  30          
+  31          unsigned char sensorTask(void)
+  32          {
+  33   1        static unsigned int value = 1;
+  34   1        value = sensorRead();
+  35   1        if (value > 255) {
+  36   2          value = 255;
+  37   2        }else if(value < 0) {
+  38   2          value = 0;
+  39   2        }
+  40   1        
+  41   1        if (value > 0) {
+  42   2          ledOn();
+  43   2        }else {
+  44   2          ledOff();
+  45   2        }
+  46   1        return (unsigned char)value;
+  47   1      }
+C51 COMPILER V9.54   APP_ADCSENSOR                                                         03/12/2022 23:34:30 PAGE 2   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    156    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  7 WARNING(S),  0 ERROR(S)

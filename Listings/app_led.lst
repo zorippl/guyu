@@ -1,0 +1,48 @@
+C51 COMPILER V9.54   APP_LED                                                               03/12/2022 23:29:20 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE APP_LED
+OBJECT MODULE PLACED IN .\Objects\app_led.obj
+COMPILER INVOKED BY: E:\SoftWares\Keil5\C51\BIN\C51.EXE app_led.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Li
+                    -stings\app_led.lst) TABS(2) OBJECT(.\Objects\app_led.obj)
+
+line level    source
+
+   1          #include "include.h"
+*** WARNING C322 IN LINE 538 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 540 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 542 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 544 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 546 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 548 OF STC15Fxxxx.H: unknown identifier
+*** WARNING C322 IN LINE 550 OF STC15Fxxxx.H: unknown identifier
+   2          
+   3          void ledInit(void)
+   4          {
+   5   1        P0M1 = 0x00;                                
+   6   1        P0M0 = 0x24;
+   7   1      }
+   8          
+   9          void ledOn(void)
+  10          {
+  11   1        P05 = 1;
+  12   1      }
+  13          
+  14          void ledOff(void)
+  15          {
+  16   1        P05 = 0;
+  17   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     13    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  7 WARNING(S),  0 ERROR(S)

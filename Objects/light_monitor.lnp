@@ -1,0 +1,7 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj",
+".\Objects\app_uart.obj",
+".\Objects\app_led.obj",
+".\Objects\app_adcSensor.obj" 
+TO ".\Objects\light_monitor" 
+PRINT(".\Listings\light_monitor.m51")
